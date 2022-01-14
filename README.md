@@ -50,3 +50,10 @@ We are now ready to build the blinky application! Simply execute make:
 make
 ```
 If everything went as planned, the blinky application is now built! You can verify this by running a listing and verifying that you have a blink.bin, blink.elf and blink.hex file.
+
+## Step #5 - Exit the Docker Container
+
+Exiting the Docker container is easy. Simply run:
+```
+exit
+```
