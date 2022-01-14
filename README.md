@@ -43,7 +43,7 @@ cmake ..
 ```
 It may take a few minutes for the command to complete. Once it has, navigate into the blinky directory:
 ```
-cd blinky
+cd blink
 ```
 We are now ready to build the blinky application! Simply execute make:
 ```
