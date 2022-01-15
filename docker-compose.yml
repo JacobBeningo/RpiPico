@@ -1,0 +1,7 @@
+version: "3.8"
+services: 
+    pico:
+        build: .
+        image: rpi/pico
+        volumes:
+            - ./:/home/dev

@@ -11,19 +11,29 @@ git clone --recurse-submodules https://github.com/JacobBeningo/RpiPico.git
 
 ## Step #2 - Build the Docker Image
 
-The Docker Image contains all the commands to setup the build toolchain and install the Raspberry Pi Pico SDK. After step #1, execute the following two commands to move into the project folder and build the Docker Image:
+The Docker Image contains all the commands to setup the build toolchain and install the Raspberry Pi Pico SDK. There are two ways to build the image. From the RpiPico directory, you can use the Makefile by typing:
+```
+make docker-build
+```
+
+or you can manually type the docker build command:
 
 ```
-cd RpiPico
 
 docker build -t rpi/pico .
 ```
 ## Step #3 - Run the Docker Image
 
-Next, we can run the Docker image using the following command:
+Next, we want to run the Docker image. The image uses a volume mount through a docker-compose file so that the host file system will also have any built files. Again, we can use the makefile to automatically issue our commands by using:
+```
+make docker-run
+```
+
+or we can manually issue the commands:
 
 ```
-docker run --rm -it --privileged -v "$(PWD):/home/dev" rpi/pico
+docker-compose up pico && \
+docker run --rm -it --privileged -v "$(PWD):/home/dev" rpi/pico:latest bash
 ```
 
 ## Step #4 - Build the Raspberry Pi Pico Blinky Application
@@ -57,3 +67,11 @@ Exiting the Docker container is easy. Simply run:
 ```
 exit
 ```
+
+## Step #6 - Prepare the Raspberry Pi Pico
+
+Hold down the BOOTSEL button on the Pico and connect the USB cable to a computer. The Pico will enumerate as a USB MSD device with a name similar to RPI-RP2
+
+## Step #7 - Program the Raspberry Pi Pico
+
+Copy the blink.uf2 and paste it into the Pico USB MSD drive. The MSD bootloader will copy the application to flash and the green LED on the board should start to blink. 
